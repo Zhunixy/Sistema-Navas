@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navas Distribuidora - Sistema de Produtos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo-container">
+                <img src="/static/images/NAVAS NOVA LOGO.png" alt="Logo Navas Distribuidora" class="logo">
+            </div>
+            <div class="user-info">
+                <span>Olá, Operador</span>
+                <i class="fas fa-user-circle"></i>
+            </div>
+        </header>
+
+        <main class="app-main">
+            <section class="search-section">
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="codigo-input" placeholder="Digite código, nome ou escaneie o produto...">
+                        <button id="search-btn" class="btn-primary">
+                            <i class="fas fa-plus"></i> Adicionar
+                        </button>
+                    </div>
+                    <div class="action-buttons">
+                        <button id="print-btn" class="btn-secondary">
+                            <i class="fas fa-print"></i> Imprimir
+                        </button>
+                        <button id="clear-btn" class="btn-danger">
+                            <i class="fas fa-trash-alt"></i> Limpar
+                        </button>
+                        <button id="barcode-btn" class="btn-info">
+                            <i class="fas fa-barcode"></i> Simular Código
+                        </button>
+                    </div>
+                </div>
+                <div id="message"></div>
+                <div id="suggestions-container"></div>
+            </section>
+
+            <section class="products-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-boxes"></i> Produtos Selecionados</h2>
+                    <div class="summary">
+                        <span id="count-display">0/12 itens</span>
+                        <span id="total-display">Total: R$ 0.00</span>
+                        <span id="datetime"></span>
+                    </div>
+                </div>
+                
+                <div class="grid-container" id="produtos-grid">
+                    <div class="empty-state">
+                        <i class="fas fa-box-open"></i>
+                        <p>Nenhum produto adicionado</p>
+                        <small>Digite um código ou escaneie um produto para começar</small>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <div class="footer-info">
+                <span>Navas Distribuidora &copy; <span id="current-year"></span></span>
+                <span>Sistema de Produtos v2.0</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modal para edição de códigos -->
+    <div id="editCodeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Editar Códigos do Produto</h3>
+            <div id="modalProductInfo"></div>
+            <div class="codes-container" id="codesContainer"></div>
+            <button id="saveCodesBtn" class="btn-primary">Salvar Alterações</button>
+        </div>
+    </div>
+
+    <!-- Modal para edição de descrição e preço (NOVO) -->
+    <div id="editDescModal" class="modal">
+        <div class="edit-desc-content">
+            <span class="close-desc-modal">&times;</span>
+            <h3>Editar Descrição e Preço</h3>
+            <div class="form-group">
+                <label for="desc-input">Descrição:</label>
+                <input type="text" id="desc-input">
+            </div>
+            <div class="form-group">
+                <label for="price-input">Preço (R$):</label>
+                <input type="number" step="0.01" id="price-input">
+            </div>
+            <button id="save-desc-btn" class="btn-primary">Salvar Alterações</button>
+        </div>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+    <script>
+        // Ano atual no footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
